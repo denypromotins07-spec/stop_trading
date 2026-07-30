@@ -1,45 +1,42 @@
 ```
 # Compiled and build artifacts
+*.pyc
+__pycache__/
 *.o
 *.obj
-*.a
-*.lib
+*.exe
 *.dll
 *.so
-*.dylib
-*.exe
+*.a
 *.out
+target/
 
 # Dependencies
-target/
-**/target/
-Cargo.lock
+.venv/
+venv/
+node_modules/
+.mypy_cache/
+.pytest_cache/
+.coverage
+coverage/
+htmlcov/
 
 # Logs and temp files
 *.log
 *.tmp
-*.swp
-
-# Editors
-.vscode/
-.idea/
 *.swp
 *.swo
 
 # Environment
 .env
 .env.local
-*.env.*
+.env.*
 
-# Coverage
-coverage/
-htmlcov/
-.coverage
+# Editors
+.vscode/
+.idea/
 
-# Rust-specific
-**/*.rs.bk
+# System files
+.DS_Store
+Thumbs.db
 ```
-
-Wait, let me reconsider. The added files are all Rust source files (.rs), and there are no build artifacts, dependency directories, or temporary files in the changes. This appears to be a pure source code addition without any files that need to be ignored.
-
-(empty)
