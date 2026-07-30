@@ -7,37 +7,25 @@
 *.so
 *.a
 *.out
-*.pyc
-__pycache__/
-
 # Dependencies
-node_modules/
-venv/
-.venv/
+target/
+**/target/
+# Logs and temp files
+*.log
+*.tmp
+*.swp
+# Environment
 .env
 .env.local
-*.env.*
-
-# Build directories (common for Rust projects)
-target/
-Cargo.lock
-
-# IDE and editor files
+.env.*
+# Editors
 .vscode/
 .idea/
-*.swp
-*.swo
-*.tmp
-*.log
-
-# System files
-.DS_Store
-Thumbs.db
-
-# Coverage and testing
-.coverage
+# Coverage reports
 coverage/
 htmlcov/
-.mypy_cache/
-.pytest_cache/
+.coverage
+# Rust specific
+Cargo.lock
+**/Cargo.lock
 ```
