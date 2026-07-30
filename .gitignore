@@ -4,15 +4,15 @@
 *.obj
 *.a
 *.lib
+*.dll
 *.so
 *.dylib
-*.dll
 *.exe
 *.out
 
 # Dependencies
 target/
-Cargo.lock
+**/target/
 
 # Logs and temp files
 *.log
@@ -22,14 +22,20 @@ Cargo.lock
 # Editors
 .vscode/
 .idea/
-
-# Coverage reports
-coverage/
-htmlcov/
-.coverage
+*.swp
+*.swo
 
 # Environment
 .env
 .env.local
-.env.*
+*.env.*
+
+# Coverage
+coverage/
+htmlcov/
+.coverage
+
+# Rust-specific
+Cargo.lock
+**/*.rs.bk
 ```
