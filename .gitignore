@@ -7,41 +7,13 @@
 *.so
 *.a
 *.out
-target/
-
 # Dependencies
-**/node_modules/
-**/venv/
-**/env/
-**/.venv/
-**/__pycache__/
-**/.mypy_cache/
-**/.pytest_cache/
-**/.gradle/
-
+target/
 # Logs and temp files
 *.log
 *.tmp
 *.swp
-
-# Environment
-.env
-.env.local
-*.env.*
-
 # Editors
 .vscode/
 .idea/
-*.swp
-*.swo
-
-# Rust-specific
-Cargo.lock
-**/target/
-**/*.rs.bk
-
-# Coverage
-coverage/
-htmlcov/
-.coverage
 ```
