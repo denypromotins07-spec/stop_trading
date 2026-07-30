@@ -1,0 +1,45 @@
+```
+# Compiled and build artifacts
+*.o
+*.obj
+*.a
+*.lib
+*.dll
+*.so
+*.dylib
+*.exe
+*.out
+
+# Dependencies
+target/
+**/target/
+Cargo.lock
+
+# Logs and temp files
+*.log
+*.tmp
+*.swp
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Environment
+.env
+.env.local
+*.env.*
+
+# Coverage
+coverage/
+htmlcov/
+.coverage
+
+# Rust-specific
+**/*.rs.bk
+```
+
+Wait, let me reconsider. The added files are all Rust source files (.rs), and there are no build artifacts, dependency directories, or temporary files in the changes. This appears to be a pure source code addition without any files that need to be ignored.
+
+(empty)
