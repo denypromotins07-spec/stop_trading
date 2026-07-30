@@ -7,25 +7,68 @@
 *.so
 *.a
 *.out
-# Dependencies
 target/
+
+# Dependencies
+**/node_modules/
+**/venv/
+**/env/
+**/.venv/
+**/__pycache__/
+**/.mypy_cache/
+**/.pytest_cache/
+**/.gradle/
+**/build/
+**/dist/
 **/target/
+
 # Logs and temp files
 *.log
 *.tmp
 *.swp
+*.swo
+
 # Environment
 .env
 .env.local
-.env.*
+*.env.*
+
 # Editors
 .vscode/
 .idea/
-# Coverage reports
+*.swp
+*.swo
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Coverage
 coverage/
 htmlcov/
 .coverage
-# Rust specific
-Cargo.lock
-**/Cargo.lock
+
+# Compressed files
+*.zip
+*.gz
+*.tar
+*.tgz
+*.bz2
+*.xz
+*.7z
+*.rar
+*.zst
+*.lz4
+*.lzh
+*.cab
+*.arj
+*.rpm
+*.deb
+*.Z
+*.lz
+*.lzo
+*.tar.gz
+*.tar.bz2
+*.tar.xz
+*.tar.zst
 ```
