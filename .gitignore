@@ -2,16 +2,32 @@
 # Compiled and build artifacts
 *.o
 *.obj
+*.exe
+*.dll
+*.so
+*.a
 *.out
 target/
 
 # Dependencies
-Cargo.lock
-**/target/
+**/node_modules/
+**/venv/
+**/env/
+**/.venv/
+**/__pycache__/
+**/.mypy_cache/
+**/.pytest_cache/
+**/.gradle/
 
 # Logs and temp files
 *.log
 *.tmp
+*.swp
+
+# Environment
+.env
+.env.local
+*.env.*
 
 # Editors
 .vscode/
@@ -19,12 +35,13 @@ Cargo.lock
 *.swp
 *.swo
 
-# Environment
-.env
-.env.local
-*.env.*
-
 # Rust-specific
-**/Cargo.lock
+Cargo.lock
 **/target/
+**/*.rs.bk
+
+# Coverage
+coverage/
+htmlcov/
+.coverage
 ```
