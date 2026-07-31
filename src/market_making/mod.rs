@@ -1,5 +1,8 @@
 //! Market Making Module Root
 //! Integrates the quoter with the pre-trade risk bus.
+pub mod avellaneda;
+pub mod inventory_penalty;
+pub mod adv_mm_mod;
 
 pub mod skew;
 pub mod quoter;
