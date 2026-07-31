@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel", "Cython>=3.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hft-nautilus-ml"
+version = "0.1.0"
+description = "HFT ML Backend with Nautilus Trader and Ray Cluster"
+requires-python = ">=3.11"
+dependencies = [
+    "nautilus_trader>=1.190.0",
+    "ray[default]>=2.9.0",
+    "pyarrow>=14.0.0",
+    "numpy>=1.26.0",
+    "flatbuffers>=23.5.26",
+    "python-dotenv>=1.0.0",
+    "uvloop>=0.19.0",
+    "pyzmq>=25.1.0",
+    "watchdog>=3.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "black>=23.9.0",
+    "ruff>=0.0.290",
+]
+
+[tool.setuptools]
+packages = ["config", "ray_cluster", "nautilus_core", "ipc_bridge", "soul"]
+
+[tool.black]
+line-length = 100
+target-version = ["py311"]
+
+[tool.ruff]
+line-length = 100
+select = ["E", "F", "W", "I", "N", "UP", "B", "C4", "SIM"]
+ignore = ["E501"]
