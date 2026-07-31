@@ -7,25 +7,35 @@
 *.so
 *.a
 *.out
+target/
 
 # Dependencies
-target/
-.cargo/
+Cargo.lock
+**/vendor/
+**/deps/
 
 # Logs and temp files
 *.log
 *.tmp
 *.swp
 
+# Environment
+.env
+.env.local
+*.env.*
+
 # Editors
 .vscode/
 .idea/
+*.swp
+*.swo
 
 # Coverage
 coverage/
 htmlcov/
 .coverage
 
-# MyPy cache
-.mypy_cache/
+# Rust-specific
+**/target/
+Cargo.lock
 ```
