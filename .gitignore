@@ -1,44 +1,15 @@
-```rust
+```
 # Compiled and build artifacts
 *.o
 *.obj
-*.a
-*.lib
-*.dll
-*.so
-*.dylib
-target/
-
+*.out
 # Dependencies
-Cargo.lock
-vendor/
-
+target/
 # Logs and temp files
 *.log
 *.tmp
-
-# Editors
-.vscode/
-.idea/
-*.swp
-*.swo
-
 # Environment
 .env
 .env.local
-*.env.*
-
-# Coverage
-coverage/
-htmlcov/
-.coverage
-
-# Rust-specific
-**/*.rs.bk
-```
-
-Wait, I need to reconsider this. The added files are all Rust source files (.rs), which are source code and should not be ignored. Looking at the file changes again, there are only source code files being added, no build artifacts, dependencies, or temporary files. According to rule #6, if the change list contains ONLY source or config files and NO build artifacts, dependencies, or temp files, I should output an EMPTY .gitignore.
-
-```rust
-
+.env.*
 ```
