@@ -24,24 +24,46 @@ venv/
 env/
 ENV/
 .venv/
-.env/
+env.bak/
 .ENV/
 .python-version
-requirements.txt.bak
-requirements-dev.txt.bak
-requirements-prod.txt.bak
-
-# Testing
+.pytest_cache/
+.mypy_cache/
 .coverage
+htmlcov/
+
+# Compiled and build artifacts
+*.o
+*.obj
+*.out
+target/
+.gradle/
+build/
+dist/
+*.class
+
+# Logs and temp files
+*.log
+*.tmp
+*.swp
+
+# Environment
+.env
+.env.local
+*.env.*
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Coverage
 coverage/
 htmlcov/
-.nox/
-.tox/
-.coverage.*
-.cache
-.pytest_cache/
-.hypothesis/
-
-# Distribution / packaging
-.pybuild/
+*.coverage
 ```
