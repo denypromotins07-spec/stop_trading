@@ -1,0 +1,128 @@
+[Unit]
+Description=HFT Crypto Bot - Ultra-Low-Latency Trading Engine
+Documentation=file:///SOUL.md
+After=network-online.target nss-lookup.target
+Wants=network-online.target
+
+# Security hardening - start before other services
+DefaultDependencies=no
+Before=multi-user.target shutdown.target
+
+[Service]
+Type=simple
+ExecStart=/opt/hft_crypto_bot/hft_crypto_bot --config /opt/hft_crypto_bot/config.toml
+ExecReload=/bin/kill -HUP $MAINPID
+Restart=on-failure
+RestartSec=1s
+
+# =============================================================================
+# MEMORY LIMITS - Strictly enforce 6.5GB RAM limit for AMD Ryzen AI 5 laptop
+# =============================================================================
+# MemoryMax: Hard limit of 6656MB (6.5GB) to protect host system
+MemoryMax=6656M
+MemoryHigh=6144M
+
+# OOM handling - prefer killing this service over critical system processes
+OOMScoreAdjust=-500
+OOMPolicy=stop
+
+# =============================================================================
+# CPU ISOLATION - Bind to specific isolated cores to prevent preemption
+# =============================================================================
+# CPUAffinity: Bind to cores 2-7 (isolated from OS scheduler on cores 0-1)
+# Adjust based on your specific CPU topology (use `lscpu` to verify)
+CPUAffinity=2 3 4 5 6 7
+
+# NUMAPolicy: Bind to local NUMA node for optimal memory access
+NUMAPolicy=local
+
+# CPU scheduling - use real-time scheduling for low latency
+CPUSchedulingPolicy=fifo
+CPUSchedulingPriority=85
+CPUSchedulingResetOnFork=yes
+
+# Prevent CPU throttling
+CPUQuota=
+
+# =============================================================================
+# PROCESS LIMITS
+# =============================================================================
+# Maximum number of open file descriptors
+LimitNOFILE=65536
+
+# Maximum number of processes/threads
+LimitNPROC=4096
+
+# Core dump settings (disabled for production, enable for debugging)
+LimitCORE=0
+
+# Lock memory for real-time performance (prevents swapping)
+LimitMEMLOCK=infinity
+
+# =============================================================================
+# SECURITY HARDENING
+# =============================================================================
+# Run as dedicated user (create with: useradd -r -s /bin/false hftbot)
+User=hftbot
+Group=hftbot
+
+# Filesystem restrictions
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+PrivateDevices=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectKernelLogs=yes
+ProtectControlGroups=yes
+ProtectClock=yes
+ProtectHostname=yes
+
+# Read-write paths (only allow writes to specific directories)
+ReadWritePaths=/opt/hft_crypto_bot/data /var/log/hft_crypto_bot
+
+# Read-only paths
+ReadOnlyPaths=/etc/ssl/certs
+
+# Temporary filesystems
+TemporaryFileSystem=/tmp:noexec,nosuid,nodev
+TemporaryFileSystem=/var/tmp:noexec,nosuid,nodev
+
+# Network restrictions
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+
+# System call filtering (seccomp)
+SystemCallFilter=@system-service
+SystemCallFilter=~@privileged @resources @mount @swap @reboot @obsolete
+SystemCallArchitectures=native
+SystemCallErrorNumber=EPERM
+
+# Capability restrictions
+CapabilityBoundingSet=CAP_NET_BIND_SERVICE CAP_IPC_LOCK
+AmbientCapabilities=
+
+# Additional security measures
+NoNewPrivileges=yes
+SecureBits=no-setuid-fixup-locked noroot-locked
+LockPersonality=yes
+RestrictRealtime=no
+RestrictSUIDSGID=yes
+RemoveIPC=yes
+
+# Mask sensitive kernel interfaces
+ProtectProc=invisible
+ProcSubset=pid
+
+# =============================================================================
+# LOGGING
+# =============================================================================
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=hft_crypto_bot
+
+# Journal rate limiting disabled for high-frequency trading logs
+LogRateLimitInterval=0
+LogRateLimitBurst=0
+
+[Install]
+WantedBy=multi-user.target

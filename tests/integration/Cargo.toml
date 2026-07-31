@@ -1,0 +1,57 @@
+[package]
+name = "hft-crypto-bot-integration-tests"
+version = "0.1.0"
+edition = "2021"
+description = "Integration tests for HFT Crypto Bot with mock exchange venues"
+publish = false
+
+# This is a test-only package
+[[test]]
+name = "integration"
+path = "harness.rs"
+harness = true
+
+[dependencies]
+# Core workspace crate
+hft_crypto_bot = { path = ".." }
+
+# Async runtime
+tokio = { version = "1", features = ["full", "rt-multi-thread", "macros", "sync", "time", "net", "io-util"] }
+
+# Networking
+tokio-tungstenite = "0.21"
+hyper = { version = "1.1", features = ["full"] }
+http-body-util = "0.1"
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# Error handling
+anyhow = "1.0"
+thiserror = "1.0"
+
+# Logging
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+# Time handling
+chrono = "0.4"
+
+# Random number generation for simulations
+rand = "0.8"
+
+# Concurrency
+crossbeam-channel = "0.5"
+tokio::sync = "1"
+
+# Testing utilities
+proptest = "1.4"
+
+[dev-dependencies]
+# Test assertions
+assert-json-diff = "2.0"
+
+[features]
+default = []
+verbose = []
