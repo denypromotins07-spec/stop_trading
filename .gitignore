@@ -7,18 +7,26 @@
 *.so
 *.a
 *.out
+
 # Dependencies
 target/
 **/target/
+
 # Logs and temp files
 *.log
 *.tmp
 *.swp
+
 # Editors
 .vscode/
 .idea/
+
 # Coverage reports
 coverage/
 htmlcov/
 .coverage
+
+# Rust-specific
+Cargo.lock
+**/*.rs.bk
 ```
