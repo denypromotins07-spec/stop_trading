@@ -8,8 +8,6 @@ __pycache__/
 env/
 venv/
 .venv/
-.ENV
-.venv.bak/
 pip-log.txt
 pip-delete-this-directory.txt
 .tox/
@@ -20,35 +18,10 @@ nosetests.xml
 coverage.xml
 *.cover
 *.log
-*.tmp
-*.swp
-*~
+*.pot
+*.po
+*.mo
+migrations/
 .DS_Store
 Thumbs.db
-
-# Development
-.python-version
-.vscode/
-.idea/
-*.swp
-*.swo
-
-# Environment
-.env
-.env.local
-*.env.*
-
-# Build and distribution artifacts
-dist/
-build/
-*.egg-info/
-*.egg
-
-# Testing
-.pytest_cache/
-.mypy_cache/
-.coverage/
-
-# Dependencies
-node_modules/
 ```
