@@ -9,77 +9,46 @@ env/
 venv/
 .venv/
 .ENV
-.env
-*.env
-.env.local
-.env.*
-.envrc
-.pytest_cache/
-.mypy_cache/
+.venv.bak/
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
 .coverage
-coverage/
-htmlcov/
-
-# Compiled and build artifacts
-*.o
-*.obj
-*.out
-*.exe
-*.dll
-*.so
-*.a
-dist/
-build/
-target/
-.gradle/
-
-# Dependencies
-node_modules/
-julia-*/
-zig*/
-
-# Logs and temp files
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
 *.log
 *.tmp
 *.swp
-*.swo
+*~
+.DS_Store
+Thumbs.db
 
-# Environment variables
-.env
-.env.local
-*.env.*
-
-# Editors
+# Development
+.python-version
 .vscode/
 .idea/
 *.swp
 *.swo
 
-# System files
-.DS_Store
-Thumbs.db
+# Environment
+.env
+.env.local
+*.env.*
 
-# Compression and archives
-*.zip
-*.gz
-*.tar
-*.tgz
-*.bz2
-*.xz
-*.7z
-*.rar
-*.zst
-*.lz4
-*.lzh
-*.cab
-*.arj
-*.rpm
-*.deb
-*.Z
-*.lz
-*.lzo
-*.tar.gz
-*.tar.bz2
-*.tar.xz
-*.tar.zst
+# Build and distribution artifacts
+dist/
+build/
+*.egg-info/
+*.egg
+
+# Testing
+.pytest_cache/
+.mypy_cache/
+.coverage/
+
+# Dependencies
+node_modules/
 ```
