@@ -2,6 +2,8 @@
 //! 
 //! Manages split-inventory risk and atomic execution requirements across venues.
 
+pub mod stablecoin_premium;
+pub mod fiat_ramp;
 pub mod cross_exchange;
 pub mod latency_arb;
 
