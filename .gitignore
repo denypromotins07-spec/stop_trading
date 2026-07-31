@@ -4,12 +4,13 @@ __pycache__/
 *.pyc
 *.pyo
 *.pyd
+*.py~
+*.py.class
 .Python
-env/
 venv/
 .venv/
-.ENV
-.venv.bak/
+env/
+ENV/
 pip-log.txt
 pip-delete-this-directory.txt
 .tox/
@@ -22,33 +23,23 @@ coverage.xml
 *.log
 *.tmp
 *.swp
-*~
+*.swo
 .DS_Store
 Thumbs.db
 
-# Development
-.python-version
-.vscode/
-.idea/
-*.swp
-*.swo
-
-# Environment
-.env
-.env.local
-*.env.*
-
-# Build and distribution artifacts
-dist/
+# Build directories
 build/
+dist/
 *.egg-info/
-*.egg
 
 # Testing
 .pytest_cache/
 .mypy_cache/
-.coverage/
+.hypothesis/
 
-# Dependencies
-node_modules/
+# Environment files
+.env
+.env.local
+.env.*
+!env.example
 ```
