@@ -1,10 +1,6 @@
 ```
 # Dependencies
 target/
-Cargo.lock
-
-# Build artifacts
-build/
 
 # Logs and temp files
 *.log
@@ -19,7 +15,6 @@ build/
 .vscode/
 .idea/
 
-# Rust-specific
-**/target/
+# Rust specific
 Cargo.lock
 ```
