@@ -24,9 +24,8 @@ target/
 # Coverage reports
 coverage/
 htmlcov/
-.coverage
+*.coverage
 
 # Rust-specific
 Cargo.lock
-**/*.rs.bk
 ```
