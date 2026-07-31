@@ -1,10 +1,46 @@
 //! Security Module Root
 //! 
-//! Coordinates compliance checks, audit logging, and governance.
+//! Coordinates compliance checks, audit logging, governance, key management, and mTLS.
 //! Wires compliance directly into the global kill switch and order router.
 
 pub mod compliance;
 pub mod governance;
+pub mod kms;
+pub mod mtls;
+pub mod sec_mod;
+
+pub use kms::{
+    LocalKms,
+    SecureBuffer,
+    EncryptedKeyBlob,
+    DecryptedKey,
+    KeyType,
+    KmsStats,
+    KmsError,
+    AES_256_KEY_SIZE,
+    GCM_NONCE_SIZE,
+    GCM_TAG_SIZE,
+};
+
+pub use mtls::{
+    MtlsConfig,
+    ClientCertConfig,
+    PinnedServerCert,
+    SecureChannel,
+    ChannelStats,
+    ApiGatewayValidator,
+    PinningMode,
+    TlsVersion,
+    MtlsStats,
+    MtlsError,
+};
+
+pub use sec_mod::{
+    SecurityManager,
+    MemoryGuard,
+    SecurityConfig,
+    CoreDumpProtection,
+};
 
 use std::sync::Arc;
 use tokio::sync::RwLock;

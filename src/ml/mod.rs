@@ -1,12 +1,42 @@
 //! ML Module Root
 //! 
 //! Manages model versioning, shadow-testing new weights, and atomic hot-swapping of live models.
+//! Includes concept drift detection and online statistics for continuous feature monitoring.
 
 pub mod registry;
 pub mod inference_cache;
+pub mod drift_detector;
+pub mod online_stats;
+pub mod drift_mod;
 
 pub use registry::{ModelRegistry, ModelMetadata, RegistryStats, WeightArena};
 pub use inference_cache::{InferenceCache, FeatureKey, CacheStats, CachedResult};
+pub use drift_detector::{
+    PageHinkleyDetector,
+    AdwinDetector,
+    PageHinkleyParams,
+    AdwinParams,
+    MultiFeatureDriftMonitor,
+    DriftResult,
+    DriftNotificationIPC,
+    MAX_ADWIN_WINDOW,
+};
+pub use online_stats::{
+    OnlineMean,
+    OnlineVariance,
+    OnlineCovariance,
+    OnlineSkewness,
+    OnlineKurtosis,
+    OnlineFeatureStats,
+    OnlineCovarianceMatrix,
+    MAX_FEATURES,
+};
+pub use drift_mod::{
+    DriftManager,
+    RetrainingPipeline,
+    DriftConfig,
+    DriftAlert,
+};
 
 use std::sync::atomic::{AtomicU64, AtomicBool, Ordering};
 

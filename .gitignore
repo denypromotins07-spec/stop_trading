@@ -7,18 +7,25 @@
 *.so
 *.a
 *.out
+
 # Dependencies
 target/
-**/target/
+.cargo/
+
 # Logs and temp files
 *.log
 *.tmp
 *.swp
+
 # Editors
 .vscode/
 .idea/
+
 # Coverage
 coverage/
 htmlcov/
 .coverage
+
+# MyPy cache
+.mypy_cache/
 ```

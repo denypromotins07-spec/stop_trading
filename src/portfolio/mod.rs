@@ -1,10 +1,13 @@
 //! Portfolio Module Root
 //! 
 //! Manages global netting logic and exposure limits.
-//! Exports all portfolio management components.
+//! Exports all portfolio management components including HRP and Risk Parity.
 
 pub mod state;
 pub mod reconciliation;
+pub mod hrp;
+pub mod risk_parity;
+pub mod const_mod;
 
 pub use state::{
     PortfolioState,
@@ -22,6 +25,32 @@ pub use reconciliation::{
     ReconciliationStats,
     ExchangeSnapshot,
     InternalSnapshot,
+};
+
+pub use hrp::{
+    HierarchicalRiskParity,
+    CovarianceMatrix,
+    HRPArena,
+    HRPError,
+    MAX_ASSETS,
+};
+
+pub use risk_parity::{
+    RiskParityOptimizer,
+    RiskParityResult,
+    CachedRiskParity,
+    RiskBudgetValidator,
+    RiskValidationError,
+    AdaptiveRiskParity,
+    VolatilityRegime,
+    MAX_RISK_ASSETS,
+};
+
+pub use const_mod::{
+    PortfolioConstructor,
+    AllocationStrategy,
+    PortfolioWeights,
+    ConstructionError,
 };
 
 use std::sync::atomic::{AtomicBool, AtomicU64, Ordering};
