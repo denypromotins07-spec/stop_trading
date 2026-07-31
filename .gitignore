@@ -4,13 +4,10 @@ __pycache__/
 *.pyc
 *.pyo
 *.pyd
-*.py~
-*.py.class
 .Python
+env/
 venv/
 .venv/
-env/
-ENV/
 pip-log.txt
 pip-delete-this-directory.txt
 .tox/
@@ -21,25 +18,10 @@ nosetests.xml
 coverage.xml
 *.cover
 *.log
-*.tmp
-*.swp
-*.swo
+*.pot
+*.po
+*.mo
+migrations/
 .DS_Store
 Thumbs.db
-
-# Build directories
-build/
-dist/
-*.egg-info/
-
-# Testing
-.pytest_cache/
-.mypy_cache/
-.hypothesis/
-
-# Environment files
-.env
-.env.local
-.env.*
-!env.example
 ```
