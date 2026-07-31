@@ -1,0 +1,54 @@
+[package]
+name = "xtask"
+version = "0.1.0"
+edition = "2021"
+description = "Custom cargo-xtask utility for HFT Crypto Bot development workflow"
+
+# This is a binary crate for developer tooling
+[[bin]]
+name = "cargo-xtask"
+path = "src/main.rs"
+
+[dependencies]
+# Core workspace crate - the HFT bot itself
+hft_crypto_bot = { path = ".." }
+
+# CLI parsing for xtask commands
+clap = { version = "4.4", features = ["derive"] }
+
+# Flamegraph generation support
+flamegraph = "0.6"
+
+# Cargo metadata for workspace introspection
+cargo_metadata = "0.18"
+
+# Process management for running benchmarks
+duct = "0.13"
+
+# Filesystem utilities
+walkdir = "2.4"
+
+# Timing and benchmarking
+instant = "0.1"
+
+# Serialization for reports
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# Error handling
+anyhow = "1.0"
+thiserror = "1.0"
+
+# Colored output for CLI
+colored = "2.1"
+
+# For packaging and archiving
+zip = "0.6"
+tar = "0.4"
+flate2 = "1.0"
+
+[profile.release]
+opt-level = 3
+lto = "thin"
+codegen-units = 1
+strip = true
