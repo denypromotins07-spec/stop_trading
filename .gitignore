@@ -6,14 +6,15 @@ __pycache__/
 # Dependencies
 .venv/
 venv/
-node_modules/
+pip-log.txt
+pipenv.lock
 
-# Logs and temporary files
+# Logs and temp files
 *.log
 *.tmp
 *.swp
 
-# Environment files
+# Environment variables
 .env
 .env.local
 *.env.*
@@ -22,17 +23,17 @@ node_modules/
 .vscode/
 .idea/
 
-# Build artifacts
-dist/
-build/
-target/
-
 # Coverage reports
+.coverage
 coverage/
 htmlcov/
-.coverage
 
 # Testing
 .pytest_cache/
 .mypy_cache/
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
 ```
