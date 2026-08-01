@@ -1,36 +1,9 @@
 ```
-# Python specific
+# Python
 __pycache__/
-*.pyc
-*.pyo
-*.pyd
-*.py~
-*.py.class
-*.py.backup
-*.swp
-*.swo
-
-# Virtual environments
-venv/
-.venv/
-env/
-ENV/
-.ENV/
-
-# Dependencies
-pip-log.txt
-pip-delete-this-directory.txt
-.tox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-*.log
-*.tmp
-
-# Distribution / packaging
+*.py[cod]
+*$py.class
+*.so
 .Python
 build/
 develop-eggs/
@@ -47,30 +20,40 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
-
-# Pytest
-. pytest_cache/
+.MF
+venv/
+env/
+ENV/
+.venv/
+.env/
+.ENV/
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.log
+.git/modules/
 .pytest_cache/
-
-# Mypy
 .mypy_cache/
+.hypothesis/
 
-# Profiling
-python/profiling/*.log
-python/profiling/*.prof
+# Docker
+Dockerfile
+docker-compose.yml
+entrypoint.sh
 
-# IDEs
+# IDE
 .vscode/
 .idea/
 *.swp
 *.swo
 
-# OS generated files
+# System
 .DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
 Thumbs.db
 ```
