@@ -5,52 +5,57 @@ __pycache__/
 *.pyo
 *.pyd
 .Python
-*.so
-*.egg-info/
-.eggs/
-
-# Virtual environments
+env/
 venv/
 .venv/
-env/
-ENV/
 .ENV
+.env
+.env.*
+.venv/
+venv/
+ENV/
+env.bak/
+.ENV.bak/
 
 # Build and distribution artifacts
 build/
 dist/
 *.egg
-*.whl
-pip-log.txt
-pip-delete-this-directory.txt
+*.egg-info/
+*.so
+.libs/
 
 # Testing
 .coverage
 htmlcov/
-.tox/
-.nox/
-coverage.xml
-*.cover
-.hypothesis/
-
-# Security/Meta-learning specific cache and temp files
-*.tmp
-*.temp
-*.cache
-
-# General temp files
-*.tmp
-*.temp
-*~
-.DS_Store
-Thumbs.db
+.coverage.*
+.cache
+.pytest_cache/
+.mypy_cache/
 
 # Logs
 *.log
 
-# Environment files
-.env
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Editor specific
+.vscode/
+.idea/
+*.swp
+*.swo
+*.tmp
+
+# Environment variables
 .env.local
 .env.*
-!.env.example
+
+# Coverage
+coverage/
 ```
