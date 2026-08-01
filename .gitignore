@@ -4,37 +4,53 @@ __pycache__/
 *.pyc
 *.pyo
 *.pyd
-*.py~
-*.py.class
 .Python
+*.so
+*.egg-info/
+.eggs/
+
+# Virtual environments
 venv/
 .venv/
+env/
+ENV/
+.ENV
+
+# Build and distribution artifacts
+build/
+dist/
+*.egg
+*.whl
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Testing
+.coverage
+htmlcov/
+.tox/
+.nox/
+coverage.xml
+*.cover
+.hypothesis/
+
+# Security/Meta-learning specific cache and temp files
+*.tmp
+*.temp
+*.cache
+
+# General temp files
+*.tmp
+*.temp
+*~
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Environment files
 .env
 .env.local
 .env.*
-.pytest_cache/
-.mypy_cache/
-.coverage
-coverage/
-htmlcov/
-
-# Build and distribution artifacts
-dist/
-build/
-*.egg-info/
-.eggs/
-.installed.cfg
-*.egg
-
-# IDE and editor files
-.vscode/
-.idea/
-*.swp
-*.swo
-*.tmp
-*.log
-
-# OS generated files
-.DS_Store
-Thumbs.db
+!.env.example
 ```
