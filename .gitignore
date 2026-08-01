@@ -4,6 +4,8 @@ __pycache__/
 *.pyc
 *.pyo
 *.pyd
+*.py~
+*.py.class
 .Python
 venv/
 .venv/
@@ -16,17 +18,23 @@ venv/
 coverage/
 htmlcov/
 
-# Logs
-*.log
+# Build and distribution artifacts
+dist/
+build/
+*.egg-info/
+.eggs/
+.installed.cfg
+*.egg
 
-# OS
-.DS_Store
-Thumbs.db
-
-# Editors
+# IDE and editor files
 .vscode/
 .idea/
 *.swp
 *.swo
 *.tmp
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
 ```
