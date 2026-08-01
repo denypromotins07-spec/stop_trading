@@ -1,5 +1,5 @@
 ```
-# Python specific
+# Python
 __pycache__/
 *.pyc
 *.pyo
@@ -14,8 +14,9 @@ __pycache__/
 venv/
 .venv/
 env/
+.venv*/
+env*/
 ENV/
-.ENV/
 
 # Dependencies
 pip-log.txt
@@ -29,6 +30,16 @@ coverage.xml
 *.cover
 *.log
 *.tmp
+*.bak
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Testing
+.pytest_cache/
+.mypy_cache/
+.hypothesis/
 
 # Distribution / packaging
 .Python
@@ -48,29 +59,16 @@ wheels/
 .installed.cfg
 *.egg
 
-# Pytest
-. pytest_cache/
-.pytest_cache/
+# Environment
+.env
+.env.local
+*.env
+.env.*
 
-# Mypy
-.mypy_cache/
-
-# Profiling
-python/profiling/*.log
-python/profiling/*.prof
-
-# IDEs
+# IDE
 .vscode/
 .idea/
-*.swp
-*.swo
-
-# OS generated files
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
+*.sublime-project
+*.sublime-workspace
+.vs/
 ```
