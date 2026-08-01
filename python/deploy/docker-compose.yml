@@ -1,0 +1,211 @@
+# Stage 45 HFT System - Docker Compose Orchestration
+# Binds Python container to Rust host network with strict resource quotas
+# Prevents Python from starving Rust core threads
+
+version: "3.9"
+
+services:
+  # ===========================================================================
+  # Python ML & Execution Container
+  # ===========================================================================
+  hft-python:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: runtime
+    image: hft-python:stage45
+    container_name: hft-python-stage45
+    
+    # Critical: Resource limits to prevent starving Rust core
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'        # Maximum 2 CPU cores
+          memory: 3G         # Exactly 3GB as per spec
+        reservations:
+          cpus: '1.0'        # Guaranteed 1 CPU core
+          memory: 2G         # Guaranteed 2GB
+    
+    # Runtime ulimit configuration
+    ulimits:
+      memlock: -1            # Unlimited locked memory for shared segments
+      nofile:
+        soft: 65536
+        hard: 65536
+      core: 0                # Disable core dumps in production
+    
+    # Network configuration - bind to Rust host network
+    network_mode: "host"     # Use host network for low-latency IPC
+    
+    # Shared memory volume for zero-copy IPC with Rust
+    shm_size: '256mb'
+    
+    # Volume mounts
+    volumes:
+      # Shared memory is automatically available with network_mode: host
+      # Model files
+      - ./models:/app/models:ro
+      # Output directories
+      - ./reports:/app/reports:rw
+      - ./digests:/app/digests:rw
+      - ./logs:/app/logs:rw
+      # Data directory (if needed)
+      - ./data:/app/data:rw
+      # Rust IPC socket/flag location
+      - /tmp/rust_core_ready:/tmp/rust_core_ready:ro
+    
+    # Environment variables
+    environment:
+      # Memory management
+      - PYTHONUNBUFFERED=1
+      - PYTHONMALLOC=malloc
+      - MALLOC_ARENA_MAX=2
+      
+      # Threading control
+      - OMP_NUM_THREADS=1
+      - MKL_NUM_THREADS=1
+      - OPENBLAS_NUM_THREADS=1
+      
+      # Ray configuration
+      - RAY_DISABLE_IMPORT_WARNING=1
+      - RAY_MEMORY_MONITOR_ERROR_THRESHOLD=0.95
+      
+      # Application settings
+      - HFT_STAGE=45
+      - LOG_LEVEL=INFO
+      - RUST_IPC_TOPIC=rust.python.ipc
+      - PYTHON_IPC_TOPIC=python.rust.ipc
+      
+      # Optional: Skip Rust wait for standalone testing
+      - SKIP_RUST_WAIT=false
+    
+    # Health check
+    healthcheck:
+      test: ["CMD", "python", "-c", "import sys; sys.exit(0)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    
+    # Restart policy
+    restart: unless-stopped
+    
+    # Logging configuration
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+        max-file: "5"
+    
+    # Security options
+    security_opt:
+      - no-new-privileges:true
+    
+    # Read-only root filesystem with necessary tmpfs
+    read_only: true
+    tmpfs:
+      - /tmp:size=100m,mode=1777
+      - /var/tmp:size=50m,mode=1777
+
+  # ===========================================================================
+  # Optional: Redis for caching and pub/sub (if not using Rust native)
+  # ===========================================================================
+  redis-cache:
+    image: redis:7-alpine
+    container_name: hft-redis-cache
+    
+    # Minimal resources for cache
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+    
+    network_mode: "host"
+    
+    command: >
+      redis-server
+      --maxmemory 256mb
+      --maxmemory-policy allkeys-lru
+      --appendonly yes
+      --appendfsync no
+    
+    volumes:
+      - redis-data:/data
+    
+    restart: unless-stopped
+
+  # ===========================================================================
+  # Optional: Prometheus metrics exporter
+  # ===========================================================================
+  metrics-exporter:
+    image: prom/prometheus:v2.48.0
+    container_name: hft-metrics-exporter
+    
+    deploy:
+      resources:
+        limits:
+          cpus: '0.25'
+          memory: 256M
+    
+    ports:
+      - "9090:9090"
+    
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus-data:/prometheus
+    
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--storage.tsdb.retention.time=7d'
+    
+    restart: unless-stopped
+
+# =============================================================================
+# Networks
+# =============================================================================
+# Using host network mode, so networks section is minimal
+networks: {}
+
+# =============================================================================
+# Volumes
+# =============================================================================
+volumes:
+  redis-data:
+    driver: local
+  prometheus-data:
+    driver: local
+
+# =============================================================================
+# Usage Instructions
+# =============================================================================
+# Start all services:
+#   docker compose up -d
+#
+# Start only Python container:
+#   docker compose up -d hft-python
+#
+# View logs:
+#   docker compose logs -f hft-python
+#
+# Monitor resources:
+#   docker stats hft-python
+#
+# Stop all services:
+#   docker compose down
+#
+# Stop and remove volumes:
+#   docker compose down -v
+#
+# Production deployment with resource verification:
+#   docker compose up -d && docker stats --no-stream
+#
+# Verify CPU quota enforcement:
+#   docker exec hft-python cat /sys/fs/cgroup/cpu/cpu.cfs_quota_us
+#   # Should show 200000 (2.0 CPUs * 100000)
+#
+# Verify memory limit:
+#   docker exec hft-python free -h
+#   # Should show ~3GB total
+# =============================================================================
