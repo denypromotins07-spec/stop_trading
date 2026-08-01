@@ -1,38 +1,76 @@
 ```
-# Compiled Python files
-*.pyc
+# Python specific
 __pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.py~
+*.py.class
+*.py.backup
+*.swp
+*.swo
+
+# Virtual environments
+venv/
+.venv/
+env/
+ENV/
+.ENV/
 
 # Dependencies
-.venv/
-venv/
-node_modules/
-
-# Logs and temporary files
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
 *.log
 *.tmp
-*.swp
 
-# Environment files
-.env
-.env.local
-*.env.*
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
 
-# Editors
+# Pytest
+. pytest_cache/
+.pytest_cache/
+
+# Mypy
+.mypy_cache/
+
+# Profiling
+python/profiling/*.log
+python/profiling/*.prof
+
+# IDEs
 .vscode/
 .idea/
+*.swp
+*.swo
 
-# Build artifacts
-dist/
-build/
-target/
-
-# Coverage reports
-coverage/
-htmlcov/
-.coverage
-
-# Testing
-.pytest_cache/
-.mypy_cache/
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
 ```
