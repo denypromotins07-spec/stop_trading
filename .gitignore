@@ -5,64 +5,28 @@ __pycache__/
 *.pyo
 *.pyd
 .Python
-env/
 venv/
 .venv/
-.ENV
-.ENV.local
 .env
 .env.local
 .env.*
-.envrc
+.pytest_cache/
+.mypy_cache/
 .coverage
 coverage/
 htmlcov/
-.pytest_cache/
-.mypy_cache/
-.tox/
-nox/
-.eggs/
-*.egg-info/
-*.so
-*.dylib
-*.dll
-*.class
-*.o
-*.obj
-*.out
 
-# Build and distribution
-dist/
-build/
-*.tar.gz
-*.whl
-*.zip
-*.tar
-*.tgz
-*.bz2
-*.xz
-*.7z
-*.rar
-*.zst
-*.lz4
-*.lzh
-*.cab
-*.arj
-*.rpm
-*.deb
-*.Z
-*.lz
-*.lzo
+# Logs
+*.log
 
-# IDE and editor files
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
 .vscode/
 .idea/
 *.swp
 *.swo
 *.tmp
-*.log
-
-# OS generated files
-.DS_Store
-Thumbs.db
 ```
